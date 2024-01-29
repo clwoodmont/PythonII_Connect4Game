@@ -1,7 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 import Connect4Game as game
-
+import DanielBatyrevAI as DanielAI
+import YosefBirnbaumAI as YosefAI
+import ShmulyStudentAI as ShmulyAI
+import copy
+random_choice = DanielAI.RandomStrategy()
+yosef_choice = YosefAI.AI_strategy()
+shmuli_choice = ShmulyAI.NotRandomStrategy()
 
 class Connect4GUI:
     def __init__(self, master):
@@ -19,6 +25,8 @@ class Connect4GUI:
         self.canvas.grid(row=1, column=0, columnspan=7)
         self.draw_board()
 
+
+
     def make_move(self, column):
         self.game.make_move(column)
         self.draw_board()
@@ -26,6 +34,14 @@ class Connect4GUI:
             winner_text = f"Player {self.game.winner} wins!"
             messagebox.showinfo("Game Over", winner_text)
             self.master.destroy()
+        else:
+            game_copy = copy.deepcopy(self.game)
+            self.game.make_move(shmuli_choice.strategy(game_copy))
+            self.draw_board()
+            if self.game.winner is not None:
+                winner_text = f"Player {self.game.winner} wins!"
+                messagebox.showinfo("Game Over", winner_text)
+                self.master.destroy()
 
     def draw_board(self):
         self.canvas.delete("all")

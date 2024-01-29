@@ -2,8 +2,10 @@ import Connect4Game
 import DanielBatyrevAI as DanielAI
 import copy
 import func_timeout
+import ShmulyStudentAI as ShmulyAI
+import YosefBirnbaumAI as YosefAI
 
-competitor_list = [DanielAI.RandomStrategy(), DanielAI.RandomStrategy("alter ego")]
+competitor_list = [ShmulyAI.NotRandomStrategy(),YosefAI.AI_strategy()]
 
 MAX_WAIT_TIME = 1
 winners = list()
