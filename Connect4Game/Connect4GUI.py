@@ -101,22 +101,22 @@ class Connect4GUI:
         self.canvas.delete("all")
 
         # Draw the board and pieces
-        for row in range(6):
-            for col in range(7):
+        for row in range(6): # rows
+            for col in range(7): # columns
                 x0, y0 = col * 60, row * 60
                 x1, y1 = x0 + 60, y0 + 60
                 self.canvas.create_rectangle(x0, y0, x1, y1, outline="black", fill="white")
 
-                if self.game.board[row][col] == 1:
-                    self.canvas.create_oval(x0 + 5, y0 + 5, x1 - 5, y1 - 5, fill="red", outline="red")
-                elif self.game.board[row][col] == 2:
-                    self.canvas.create_oval(x0 + 5, y0 + 5, x1 - 5, y1 - 5, fill="yellow", outline="yellow")
+                if self.game.board[row][col] == 1: # index where player one went
+                    self.canvas.create_oval(x0 + 5, y0 + 5, x1 - 5, y1 - 5, fill="red", outline="red") # draw red piece
+                elif self.game.board[row][col] == 2: # index where player two went
+                    self.canvas.create_oval(x0 + 5, y0 + 5, x1 - 5, y1 - 5, fill="yellow", outline="yellow") # draw yellow piece
 
         # Enable or disable buttons based on the board state
         for col in range(7):
             if self.game.board[0][col] == 0:
                 self.buttons[col]["state"] = tk.NORMAL
-            else:
+            else: # don't allow player to move before computer went
                 self.buttons[col]["state"] = tk.DISABLED
 
 if __name__ == "__main__":
